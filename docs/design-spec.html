@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanilla Hair & Beauty — Redesign Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary:  #736e48;
+    --secondary:#fbf4c9;
+    --sand:     #D4C5A9;
+    --terra:    #B5704A;
+    --terra-dk: #8C4E2F;
+    --dark:     #1C1712;
+    --mid:      #5C4E3A;
+    --light:    #9A8A75;
+    --white:    #FDFAF5;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans:  'DM Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── TABS ── */
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--sand); background: var(--white); position: sticky; top: 0; z-index: 100; }
+  .tab-btn {
+    flex: 1; padding: 14px 10px; font-family: var(--sans); font-size: 12px; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--light); background: none;
+    border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--mid); }
+  .tab-btn.active { color: var(--terra); border-bottom-color: var(--terra); }
+  .panel { display: none; padding: 36px 28px; }
+  .panel.active { display: block; }
+
+  /* ── SHARED ── */
+  h2 { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--dark); margin-bottom: 6px; }
+  h3 { font-family: var(--serif); font-size: 20px; font-weight: 300; color: var(--dark); margin-bottom: 4px; }
+  .label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); margin-bottom: 12px; display: block; }
+  .note { font-size: 12px; color: var(--light); margin-top: 8px; font-style: italic; }
+  .divider { height: 1px; background: var(--sand); opacity: 0.4; margin: 28px 0; }
+
+  /* ── PALETTE TAB ── */
+  .swatch-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .swatch {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .swatch-block {
+    width: 64px; height: 64px; border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .swatch-name { font-size: 11px; color: var(--mid); font-weight: 500; text-align: center; }
+  .swatch-hex { font-size: 10px; color: var(--light); font-family: monospace; }
+
+  /* Palette usage examples */
+  .usage-card {
+    border: 1px solid var(--sand); border-radius: 12px; overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .usage-header {
+    background: var(--warm); padding: 12px 16px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.04em; color: var(--mid);
+  }
+  .usage-body { padding: 16px; }
+
+  /* ── TYPOGRAPHY TAB ── */
+  .type-specimen { margin-bottom: 28px; }
+  .type-display {
+    font-family: var(--serif); font-size: 52px; font-weight: 300;
+    line-height: 1.1; color: var(--dark); letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .type-display-italic {
+    font-family: var(--serif); font-size: 52px; font-weight: 300;
+    font-style: italic; line-height: 1.1; color: var(--terra);
+    letter-spacing: -0.01em;
+  }
+  .type-h2-ex { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--dark); margin-bottom: 4px; }
+  .type-h3-ex { font-family: var(--serif); font-size: 20px; font-weight: 300; color: var(--mid); }
+  .type-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra); }
+  .type-body { font-family: var(--sans); font-size: 15px; font-weight: 300; color: var(--mid); line-height: 1.7; max-width: 360px; }
+  .type-caption { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--light); }
+  .type-cta {
+    font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+    background: var(--dark); color: var(--white); border-radius: 100px;
+    padding: 10px 22px; display: inline-block; margin-top: 12px;
+  }
+  .type-cta-ghost {
+    font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+    border: 1px solid var(--sand); color: var(--dark); border-radius: 100px;
+    padding: 10px 22px; display: inline-block; margin-top: 12px; margin-left: 8px;
+  }
+  .type-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--warm); }
+  .type-row:last-child { border-bottom: none; }
+  .type-label { font-size: 11px; color: var(--light); font-weight: 500; min-width: 100px; }
+  .type-spec { font-size: 11px; color: var(--sand); font-family: monospace; }
+
+  /* ── WIREFRAME TAB ── */
+
+  /* Nav mock */
+  .mock-nav {
+    background: var(--white); border-bottom: 1px solid var(--warm);
+    padding: 14px 20px; display: flex; justify-content: space-between; align-items: center;
+    position: sticky; top: 47px; z-index: 90;
+    border-radius: 10px 10px 0 0;
+  }
+  .mock-logo { font-family: var(--serif); font-size: 18px; font-weight: 300; color: var(--dark); letter-spacing: 0.02em; }
+  .mock-logo span { font-style: italic; color: var(--terra); }
+  .mock-links { display: flex; gap: 20px; align-items: center; }
+  .mock-link { font-size: 12px; color: var(--mid); text-decoration: none; font-weight: 400; }
+  .mock-book {
+    font-size: 12px; font-weight: 500; background: var(--terra); color: var(--white);
+    border-radius: 100px; padding: 8px 18px; text-decoration: none; letter-spacing: 0.02em;
+  }
+
+  /* Hero mock */
+  .mock-hero {
+    background: var(--warm); padding: 52px 24px 44px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center;
+  }
+  .mock-hero-text {}
+  .mock-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra); margin-bottom: 12px; }
+  .mock-h1 { font-family: var(--serif); font-size: 42px; font-weight: 300; line-height: 1.15; color: var(--dark); margin-bottom: 14px; }
+  .mock-h1 em { font-style: italic; color: var(--terra); }
+  .mock-sub { font-size: 14px; color: var(--mid); font-weight: 300; line-height: 1.7; margin-bottom: 20px; max-width: 280px; }
+  .mock-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .mock-btn-primary {
+    font-size: 12px; font-weight: 500; background: var(--dark); color: var(--white);
+    border-radius: 100px; padding: 10px 20px; letter-spacing: 0.03em;
+  }
+  .mock-btn-ghost {
+    font-size: 12px; font-weight: 400; border: 1px solid var(--sand); color: var(--dark);
+    border-radius: 100px; padding: 10px 20px;
+  }
+  .mock-hero-img {
+    background: var(--sand); border-radius: 12px; aspect-ratio: 4/5;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--mid); position: relative; overflow: hidden;
+  }
+  .mock-hero-img::after {
+    content: 'Hero photo — full-bleed, real client work';
+    font-size: 11px; color: var(--mid); text-align: center; padding: 20px;
+  }
+
+  /* Services */
+  .mock-section { padding: 36px 20px; background: var(--cream); }
+  .mock-section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; }
+  .mock-see-all { font-size: 12px; color: var(--terra); font-weight: 500; text-decoration: none; letter-spacing: 0.02em; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .service-card {
+    background: var(--white); border: 1px solid var(--warm); border-radius: 12px; overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .service-card:hover { transform: translateY(-2px); }
+  .service-img {
+    aspect-ratio: 4/3; background: var(--sand); display: flex; align-items: center;
+    justify-content: center; font-size: 10px; color: var(--mid);
+  }
+  .service-img.c1 { background: #D4C5A9; }
+  .service-img.c2 { background: #C9B89A; }
+  .service-img.c3 { background: #BFB08E; }
+  .service-img.c4 { background: #B5A882; }
+  .service-img.c5 { background: #AAA075; }
+  .service-img.c6 { background: #9F9869; }
+  .service-body { padding: 12px 14px 14px; }
+  .service-name { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--dark); margin-bottom: 2px; }
+  .service-desc { font-size: 12px; color: var(--light); line-height: 1.5; margin-bottom: 8px; }
+  .service-link { font-size: 11px; font-weight: 500; color: var(--terra); letter-spacing: 0.03em; text-transform: uppercase; }
+
+  /* Testimonials */
+  .mock-testimonials { background: var(--dark); padding: 36px 20px; }
+  .mock-testimonials .label { color: var(--sand); }
+  .testimonials-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+  .testimonial-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 16px;
+  }
+  .testimonial-quote { font-family: var(--serif); font-size: 15px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 10px; }
+  .testimonial-author { font-size: 11px; color: var(--sand); opacity: 0.6; font-weight: 500; letter-spacing: 0.04em; }
+  .stars { font-size: 10px; color: var(--terra); letter-spacing: 2px; margin-bottom: 8px; }
+
+  /* Gallery strip */
+  .mock-gallery { padding: 28px 20px; background: var(--cream); }
+  .gallery-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .gallery-cell {
+    aspect-ratio: 1; background: var(--sand); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--mid);
+  }
+  .gallery-cell:nth-child(1) { background: #C9B89A; }
+  .gallery-cell:nth-child(2) { background: #BFB08E; }
+  .gallery-cell:nth-child(3) { background: #B5A882; }
+  .gallery-cell:nth-child(4) { background: #AAA075; border: 1.5px dashed var(--sand); font-size: 12px; color: var(--mid); background: var(--warm); }
+
+  /* Footer CTA */
+  .mock-footer-cta { background: var(--terra); padding: 36px 24px; text-align: center; }
+  .footer-cta-h { font-family: var(--serif); font-size: 30px; font-weight: 300; font-style: italic; color: var(--white); margin-bottom: 6px; }
+  .footer-cta-sub { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 20px; font-weight: 300; }
+  .footer-cta-btn {
+    font-size: 13px; font-weight: 500; background: var(--white); color: var(--terra);
+    border-radius: 100px; padding: 12px 28px; display: inline-block; letter-spacing: 0.03em;
+  }
+
+  .wireframe-wrapper { border: 1px solid var(--sand); border-radius: 12px; overflow: hidden; }
+
+  /* Annotation layer */
+  .annotation {
+    background: var(--warm); border-left: 3px solid var(--terra);
+    padding: 8px 12px; margin: 6px 0; font-size: 12px; color: var(--mid);
+    border-radius: 0 6px 6px 0;
+  }
+  .annotation strong { color: var(--terra); font-weight: 500; }
+
+</style>
+</head>
+<body>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('palette')">Palette</button>
+  <button class="tab-btn" onclick="showTab('type')">Typography</button>
+  <button class="tab-btn" onclick="showTab('wireframe')">Wireframe</button>
+  <button class="tab-btn" onclick="showTab('team')">Team</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════ PALETTE ═══ -->
+<div id="tab-palette" class="panel active">
+
+  <span class="label">Primary palette</span>
+  <div class="swatch-row">
+    <div class="swatch">
+      <div class="swatch-block" style="background:#FDFAF5;"></div>
+      <div class="swatch-name">White</div>
+      <div class="swatch-hex">#FDFAF5</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#F5F0E8;"></div>
+      <div class="swatch-name">Cream</div>
+      <div class="swatch-hex">#F5F0E8</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#EDE6D6;"></div>
+      <div class="swatch-name">Warm</div>
+      <div class="swatch-hex">#EDE6D6</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#D4C5A9;"></div>
+      <div class="swatch-name">Sand</div>
+      <div class="swatch-hex">#D4C5A9</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#9A8A75;"></div>
+      <div class="swatch-name">Stone</div>
+      <div class="swatch-hex">#9A8A75</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#5C4E3A;"></div>
+      <div class="swatch-name">Mid</div>
+      <div class="swatch-hex">#5C4E3A</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#1C1712;"></div>
+      <div class="swatch-name">Dark</div>
+      <div class="swatch-hex">#1C1712</div>
+    </div>
+  </div>
+
+  <span class="label" style="margin-top:20px;">Accent</span>
+  <div class="swatch-row">
+    <div class="swatch">
+      <div class="swatch-block" style="background:#B5704A;"></div>
+      <div class="swatch-name">Terracotta</div>
+      <div class="swatch-hex">#B5704A</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#8C4E2F;"></div>
+      <div class="swatch-name">Deep terra</div>
+      <div class="swatch-hex">#8C4E2F</div>
+    </div>
+  </div>
+  <p class="note">Terracotta is the only accent. Used for CTAs, hover states, italic display text, and active nav. Everything else is neutral.</p>
+
+  <div class="divider"></div>
+
+  <span class="label">Colour usage rules</span>
+
+  <div class="usage-card">
+    <div class="usage-header">Backgrounds — layered warmth</div>
+    <div class="usage-body">
+      <p style="font-size:13px;color:var(--mid);line-height:1.6;">Page base is <strong style="color:var(--dark)">Cream</strong>. Cards and the nav use <strong style="color:var(--dark)">White</strong>. Alternating sections use <strong style="color:var(--dark)">Warm</strong>. The dark footer strip uses <strong style="color:var(--dark)">Dark (#1C1712)</strong> for drama. One section — the CTA band — uses <strong style="color:var(--terra)">Terracotta</strong> as its background.</p>
+    </div>
+  </div>
+
+  <div class="usage-card">
+    <div class="usage-header">Text hierarchy</div>
+    <div class="usage-body" style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:12px;height:12px;border-radius:3px;background:#1C1712;flex-shrink:0;"></div>
+        <span style="font-size:13px;color:var(--mid);">Headlines, primary body — <strong style="color:var(--dark)">Dark</strong></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:12px;height:12px;border-radius:3px;background:#5C4E3A;flex-shrink:0;"></div>
+        <span style="font-size:13px;color:var(--mid);">Secondary body, descriptions — <strong style="color:var(--dark)">Mid</strong></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:12px;height:12px;border-radius:3px;background:#9A8A75;flex-shrink:0;"></div>
+        <span style="font-size:13px;color:var(--mid);">Labels, captions, meta — <strong style="color:var(--dark)">Stone</strong></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:12px;height:12px;border-radius:3px;background:#B5704A;flex-shrink:0;"></div>
+        <span style="font-size:13px;color:var(--mid);">Eyebrows, links, accents — <strong style="color:var(--terra)">Terracotta</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="usage-card">
+    <div class="usage-header">What to avoid</div>
+    <div class="usage-body">
+      <p style="font-size:13px;color:var(--mid);line-height:1.7;">No pure black (#000) — use Dark instead. No blue, no purple, no green. No more than one terracotta element per viewport. Borders use Sand at 40% opacity — never bold lines. White text only on Dark or Terracotta backgrounds.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════ TYPOGRAPHY ═══ -->
+<div id="tab-type" class="panel">
+
+  <span class="label">Display type — Cormorant Garamond</span>
+  <div class="type-specimen" style="border:1px solid var(--warm);border-radius:12px;padding:24px;">
+    <div class="type-display">Hair & beauty,</div>
+    <div class="type-display-italic">done properly.</div>
+    <p class="note" style="margin-top:12px;">Light 300 weight upright + italic in terracotta. The italic is the signature move — used only for the second half of the hero headline and sparingly elsewhere.</p>
+  </div>
+
+  <div class="divider"></div>
+  <span class="label">Type scale</span>
+
+  <div style="border:1px solid var(--warm);border-radius:12px;overflow:hidden;margin-bottom:20px;">
+    <div class="type-row" style="padding:14px 16px;">
+      <div>
+        <div class="type-label">Display / H1</div>
+        <div style="font-family:var(--serif);font-size:38px;font-weight:300;color:var(--dark);line-height:1.1;">Hero headline</div>
+      </div>
+      <div class="type-spec">Cormorant 300 · 38–52px</div>
+    </div>
+    <div class="type-row" style="padding:14px 16px;">
+      <div>
+        <div class="type-label">H2 / Section</div>
+        <div class="type-h2-ex">Our services</div>
+      </div>
+      <div class="type-spec">Cormorant 400 · 28px</div>
+    </div>
+    <div class="type-row" style="padding:14px 16px;">
+      <div>
+        <div class="type-label">H3 / Card title</div>
+        <div class="type-h3-ex">Hairdressing</div>
+      </div>
+      <div class="type-spec">Cormorant 300 · 20px</div>
+    </div>
+    <div class="type-row" style="padding:14px 16px;">
+      <div>
+        <div class="type-label">Eyebrow</div>
+        <div class="type-eyebrow">Salon & beauty · Orihuela</div>
+      </div>
+      <div class="type-spec">DM Sans 500 · 11px · +0.1em</div>
+    </div>
+    <div class="type-row" style="padding:14px 16px;">
+      <div>
+        <div class="type-label">Body</div>
+        <div class="type-body">Expert colour, cuts and treatments — everything in one relaxed, welcoming space.</div>
+      </div>
+      <div class="type-spec">DM Sans 300 · 15px</div>
+    </div>
+    <div class="type-row" style="padding:14px 16px;border-bottom:none;">
+      <div>
+        <div class="type-label">Caption / label</div>
+        <div class="type-caption">Cuts · Styling · Blowdry</div>
+      </div>
+      <div class="type-spec">DM Sans 400 · 12px</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <span class="label">Buttons & CTAs</span>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+    <div class="type-cta">Book an appointment</div>
+    <div class="type-cta-ghost">View all services</div>
+    <div style="font-size:12px;font-weight:500;color:var(--terra);letter-spacing:0.04em;text-transform:uppercase;text-decoration:none;">Explore →</div>
+  </div>
+
+  <div class="divider"></div>
+  <span class="label">Font pairing rationale</span>
+  <div class="usage-card">
+    <div class="usage-header">Why Cormorant + DM Sans</div>
+    <div class="usage-body">
+      <p style="font-size:13px;color:var(--mid);line-height:1.7;">Cormorant Garamond is high-fashion editorial — its fine strokes and elegant proportions signal quality and femininity without being fussy. DM Sans is clean, geometric, and slightly warm — it grounds the design and stays readable at small sizes. The contrast between them is the design. No system fonts, no generic choices.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════ WIREFRAME ═══ -->
+<div id="tab-wireframe" class="panel" style="padding:20px;">
+
+  <div style="margin-bottom:16px;">
+    <span class="label">Interactive homepage wireframe</span>
+    <p style="font-size:13px;color:var(--mid);">This is the proposed page in order. Colours and fonts are as specified. Images are placeholders.</p>
+  </div>
+
+  <div class="wireframe-wrapper">
+
+    <!-- NAV -->
+    <div class="mock-nav">
+      <div class="mock-logo">Vanilla <span>Hair</span></div>
+      <div class="mock-links">
+        <a class="mock-link" href="#">Services</a>
+        <a class="mock-link" href="#">About</a>
+        <a class="mock-link" href="#">Contact</a>
+        <a class="mock-book" href="#">Book now</a>
+      </div>
+    </div>
+    <div class="annotation">① Sticky nav — max 3 links + one strong CTA button. Logo left, actions right.</div>
+
+    <!-- HERO -->
+    <div class="mock-hero">
+      <div class="mock-hero-text">
+        <div class="mock-eyebrow">Orihuela · Salon & beauty</div>
+        <div class="mock-h1">Hair & beauty,<br><em>done properly.</em></div>
+        <div class="mock-sub">Expert colour, cuts, and holistic treatments — all under one relaxed roof.</div>
+        <div class="mock-btns">
+          <div class="mock-btn-primary">Book an appointment</div>
+          <div class="mock-btn-ghost">View services</div>
+        </div>
+      </div>
+      <div class="mock-hero-img"></div>
+    </div>
+    <div class="annotation">② Hero — split layout, serif headline, italic accent in terracotta. Two CTAs: primary book + secondary explore.</div>
+
+    <!-- SERVICES -->
+    <div class="mock-section">
+      <div class="mock-section-header">
+        <div>
+          <span class="label" style="margin-bottom:4px;">What we offer</span>
+          <h2 style="font-size:24px;">Our services</h2>
+        </div>
+        <a class="mock-see-all" href="#">See all →</a>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-img c1">Photo</div>
+          <div class="service-body">
+            <div class="service-name">Hairdressing</div>
+            <div class="service-desc">Cuts, styling & blowdry for all lengths and textures</div>
+            <div class="service-link">Explore →</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img c2">Photo</div>
+          <div class="service-body">
+            <div class="service-name">Colouring</div>
+            <div class="service-desc">Balayage, highlights, tints & creative colour</div>
+            <div class="service-link">Explore →</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img c3">Photo</div>
+          <div class="service-body">
+            <div class="service-name">Beauty</div>
+            <div class="service-desc">Facials, waxing, and skin treatments</div>
+            <div class="service-link">Explore →</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img c4">Photo</div>
+          <div class="service-body">
+            <div class="service-name">Holistics</div>
+            <div class="service-desc">Massage, reflexology and wellness therapies</div>
+            <div class="service-link">Explore →</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img c5">Photo</div>
+          <div class="service-body">
+            <div class="service-name">Eyes</div>
+            <div class="service-desc">Lash extensions, brow shaping & tinting</div>
+            <div class="service-link">Explore →</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img c6">Photo</div>
+          <div class="service-body">
+            <div class="service-name">Nails</div>
+            <div class="service-desc">Manicure, gel, BIAB & nail art</div>
+            <div class="service-link">Explore →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation">③ Services — 3-column grid, image-led cards. Replaces portfolio. Each links to its own service page.</div>
+
+    <!-- TESTIMONIALS -->
+    <div class="mock-testimonials">
+      <span class="label">What our clients say</span>
+      <div class="testimonials-row">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-quote">"Absolutely love my colour — always perfect."</div>
+          <div class="testimonial-author">Sarah M. · Google</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-quote">"Best salon in Orihuela, wouldn't go anywhere else."</div>
+          <div class="testimonial-author">Claire B. · Google</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-quote">"The holistic treatments are a total escape."</div>
+          <div class="testimonial-author">Lucy T. · Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation">④ Social proof on dark background — creates visual drama and builds trust before the gallery.</div>
+
+    <!-- GALLERY STRIP -->
+    <div class="mock-gallery">
+      <div class="mock-section-header" style="margin-bottom:14px;">
+        <div>
+          <span class="label" style="margin-bottom:2px;">Our work</span>
+          <h2 style="font-size:20px;">From the salon</h2>
+        </div>
+        <a class="mock-see-all" href="#">Full portfolio →</a>
+      </div>
+      <div class="gallery-strip">
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell" style="font-size:12px;color:var(--mid);">+ more</div>
+      </div>
+    </div>
+    <div class="annotation">⑤ Gallery strip — condensed 4-up. Portfolio becomes its own page, not the homepage focus.</div>
+
+    <!-- FOOTER CTA -->
+    <div class="mock-footer-cta">
+      <div class="footer-cta-h">Ready for a change?</div>
+      <div class="footer-cta-sub">Book online in under a minute. No faff.</div>
+      <div class="footer-cta-btn">Book your appointment</div>
+    </div>
+    <div class="annotation">⑥ Terracotta CTA band — bold colour close, single action. Full footer (address, hours, socials) sits below this.</div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ TEAM ═══ -->
+<div id="tab-team" class="panel">
+
+  <span class="label">Meet the team — page concept</span>
+  <p style="font-size:13px;color:var(--mid);margin-bottom:24px;line-height:1.7;">A dedicated team page (or section) builds enormous trust for a salon — clients book people, not just services. Here are two layout options and a set of content recommendations.</p>
+
+  <!-- Option A -->
+  <div style="margin-bottom:10px;">
+    <span class="label" style="margin-bottom:6px;">Option A — Full dedicated page (recommended)</span>
+  </div>
+
+  <div style="border:1px solid var(--sand);border-radius:12px;overflow:hidden;margin-bottom:10px;">
+
+    <!-- Page hero -->
+    <div style="background:var(--warm);padding:32px 24px;text-align:center;border-bottom:1px solid var(--sand);">
+      <div style="font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:8px;">The people behind Vanilla</div>
+      <div style="font-family:var(--serif);font-size:32px;font-weight:300;color:var(--dark);line-height:1.2;">A team who <em style="color:var(--terra);">genuinely care.</em></div>
+      <div style="font-size:13px;color:var(--mid);margin-top:10px;font-weight:300;max-width:320px;margin-left:auto;margin-right:auto;">We're a small, experienced team who take pride in every appointment.</div>
+    </div>
+
+    <!-- Team grid -->
+    <div style="padding:28px 20px;background:var(--cream);">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+
+        <!-- Card 1 — Owner/Senior -->
+        <div style="background:var(--white);border:1px solid var(--warm);border-radius:12px;overflow:hidden;">
+          <div style="aspect-ratio:3/4;background:var(--sand);position:relative;overflow:hidden;display:flex;align-items:flex-end;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--mid);">Photo</div>
+            <div style="background:var(--terra);color:var(--white);font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:4px 10px;border-radius:0 6px 0 0;position:relative;z-index:1;">Owner</div>
+          </div>
+          <div style="padding:14px;">
+            <div style="font-family:var(--serif);font-size:19px;font-weight:400;color:var(--dark);margin-bottom:2px;">Sarah</div>
+            <div style="font-size:11px;font-weight:500;color:var(--terra);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Senior Stylist & Owner</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.6;margin-bottom:10px;">20 years experience. Specialist in precision cuts and creative colour. Loves a good balayage.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;">
+              <span style="font-size:10px;background:var(--warm);border:1px solid var(--sand);border-radius:20px;padding:3px 9px;color:var(--mid);">Colour</span>
+              <span style="font-size:10px;background:var(--warm);border:1px solid var(--sand);border-radius:20px;padding:3px 9px;color:var(--mid);">Cuts</span>
+              <span style="font-size:10px;background:var(--warm);border:1px solid var(--sand);border-radius:20px;padding:3px 9px;color:var(--mid);">Balayage</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div style="background:var(--white);border:1px solid var(--warm);border-radius:12px;overflow:hidden;">
+          <div style="aspect-ratio:3/4;background:#C9B89A;position:relative;display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:11px;color:var(--mid);">Photo</div>
+          </div>
+          <div style="padding:14px;">
+            <div style="font-family:var(--serif);font-size:19px;font-weight:400;color:var(--dark);margin-bottom:2px;">Emma</div>
+            <div style="font-size:11px;font-weight:500;color:var(--terra);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Beauty Therapist</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.6;margin-bottom:10px;">Qualified therapist with a passion for skin. Expert in lash lifts, facials and brow design.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;">
+              <span style="font-size:10px;background:var(--warm);border:1px solid var(--sand);border-radius:20px;padding:3px 9px;color:var(--mid);">Beauty</span>
+              <span style="font-size:10px;background:var(--warm);border:1px solid var(--sand);border-radius:20px;padding:3px 9px;color:var(--mid);">Eyes</span>
+              <span style="font-size:10px;background:var(--warm);border:1px solid var(--sand);border-radius:20px;padding:3px 9px;color:var(--mid);">Skin</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div style="background:var(--white);border:1px solid var(--warm);border-radius:12px;overflow:hidden;">
+          <div style="aspect-ratio:3/4;background:#BFB08E;position:relative;display:flex;align-items:center;justify-content:center;">
+            <div style="font-size:11px;color:var(--mid);">Photo</div>
+          </div>
+          <div style="padding:14px;">
+            <div style="font-family:var(--serif);font-size:19px;font-weight:400;color:var(--dark);margin-bottom:2px;">Jade</div>
+            <div style="font-size:11px;font-weight:500;color:var(--terra);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Nail Technician & Holistics</div>
+            <div style="font-size:12px;color:var(--mid);line-height:1.6;margin-bottom:10px;">BIAB and gel specialist. Also trained in reflexology and holistic massage therapies.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;">
+              <span style="font-size:10px;background:var(--warm);border:1px solid var(--sand);border-radius:20px;padding:3px 9px;color:var(--mid);">Nails</span>
+              <span style="font-size:10px;background:var(--warm);border:1px solid var(--sand);border-radius:20px;padding:3px 9px;color:var(--mid);">Holistics</span>
+              <span style="font-size:10px;background:var(--warm);border:1px solid var(--sand);border-radius:20px;padding:3px 9px;color:var(--mid);">BIAB</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Values strip -->
+    <div style="background:var(--dark);padding:24px 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center;">
+      <div>
+        <div style="font-family:var(--serif);font-size:28px;font-weight:300;font-style:italic;color:var(--terra);margin-bottom:4px;">15+</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);font-weight:500;letter-spacing:0.06em;text-transform:uppercase;">Years established</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif);font-size:28px;font-weight:300;font-style:italic;color:var(--terra);margin-bottom:4px;">3</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);font-weight:500;letter-spacing:0.06em;text-transform:uppercase;">Expert therapists</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif);font-size:28px;font-weight:300;font-style:italic;color:var(--terra);margin-bottom:4px;">6</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);font-weight:500;letter-spacing:0.06em;text-transform:uppercase;">Services offered</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="annotation" style="margin-top:0;">Portrait-format photos work best (3:4) — salon shots, not studio headshots. Natural light, in the salon itself. Real over polished.</div>
+
+  <div style="height:28px;"></div>
+
+  <!-- Option B -->
+  <span class="label">Option B — Homepage section (lighter touch)</span>
+  <p style="font-size:13px;color:var(--mid);margin-bottom:16px;line-height:1.7;">If a full page feels like too much content to maintain, a compact team strip on the homepage between gallery and footer works well too.</p>
+
+  <div style="border:1px solid var(--sand);border-radius:12px;overflow:hidden;margin-bottom:24px;">
+    <div style="background:var(--warm);padding:20px 20px 0;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px;">
+        <div>
+          <div style="font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--light);margin-bottom:4px;">Who we are</div>
+          <div style="font-family:var(--serif);font-size:22px;font-weight:300;color:var(--dark);">Meet the team</div>
+        </div>
+        <a style="font-size:12px;color:var(--terra);font-weight:500;">About us →</a>
+      </div>
+      <!-- Horizontal scroll cards -->
+      <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:20px;">
+        <div style="flex:0 0 160px;background:var(--white);border:1px solid var(--sand);border-radius:10px;overflow:hidden;">
+          <div style="height:120px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--mid);">Photo</div>
+          <div style="padding:10px 12px;">
+            <div style="font-family:var(--serif);font-size:16px;color:var(--dark);">Sarah</div>
+            <div style="font-size:10px;color:var(--terra);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">Owner & Stylist</div>
+          </div>
+        </div>
+        <div style="flex:0 0 160px;background:var(--white);border:1px solid var(--sand);border-radius:10px;overflow:hidden;">
+          <div style="height:120px;background:#C9B89A;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--mid);">Photo</div>
+          <div style="padding:10px 12px;">
+            <div style="font-family:var(--serif);font-size:16px;color:var(--dark);">Emma</div>
+            <div style="font-size:10px;color:var(--terra);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">Beauty Therapist</div>
+          </div>
+        </div>
+        <div style="flex:0 0 160px;background:var(--white);border:1px solid var(--sand);border-radius:10px;overflow:hidden;">
+          <div style="height:120px;background:#BFB08E;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--mid);">Photo</div>
+          <div style="padding:10px 12px;">
+            <div style="font-family:var(--serif);font-size:16px;color:var(--dark);">Jade</div>
+            <div style="font-size:10px;color:var(--terra);font-weight:500;letter-spacing:0.04em;text-transform:uppercase;">Nails & Holistics</div>
+          </div>
+        </div>
+        <div style="flex:0 0 160px;background:var(--warm);border:1.5px dashed var(--sand);border-radius:10px;display:flex;align-items:center;justify-content:center;height:158px;">
+          <div style="text-align:center;padding:12px;">
+            <div style="font-family:var(--serif);font-size:22px;font-weight:300;color:var(--terra);">+</div>
+            <div style="font-size:11px;color:var(--light);">Add more<br>team members</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="annotation">Horizontal scroll on mobile, row on desktop. Low maintenance — just add a card per person.</div>
+
+  <div style="height:28px;"></div>
+
+  <!-- Content tips -->
+  <span class="label">Content tips for each team card</span>
+  <div style="border:1px solid var(--sand);border-radius:12px;overflow:hidden;">
+    <div style="background:var(--warm);padding:12px 16px;font-size:12px;font-weight:500;color:var(--mid);letter-spacing:0.04em;">What to include — and what to leave out</div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="width:20px;height:20px;border-radius:50%;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:10px;color:#2e7d32;flex-shrink:0;margin-top:1px;">✓</div>
+        <div style="font-size:13px;color:var(--mid);"><strong style="color:var(--dark);">First name only</strong> — keeps it personal and approachable. Full names optional.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="width:20px;height:20px;border-radius:50%;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:10px;color:#2e7d32;flex-shrink:0;margin-top:1px;">✓</div>
+        <div style="font-size:13px;color:var(--mid);"><strong style="color:var(--dark);">Role title + 1–2 sentence bio</strong> — what they specialise in, written warmly. Not a CV.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="width:20px;height:20px;border-radius:50%;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:10px;color:#2e7d32;flex-shrink:0;margin-top:1px;">✓</div>
+        <div style="font-size:13px;color:var(--mid);"><strong style="color:var(--dark);">Speciality tags</strong> — 2–3 service tags so clients can immediately match the right person to their need.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="width:20px;height:20px;border-radius:50%;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:10px;color:#2e7d32;flex-shrink:0;margin-top:1px;">✓</div>
+        <div style="font-size:13px;color:var(--mid);"><strong style="color:var(--dark);">"Book with me" button</strong> — links directly to booking with that specific person pre-selected if your booking system supports it.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="width:20px;height:20px;border-radius:50%;background:#fce4e4;display:flex;align-items:center;justify-content:center;font-size:10px;color:#c62828;flex-shrink:0;margin-top:1px;">✕</div>
+        <div style="font-size:13px;color:var(--mid);">Avoid listing every qualification — clients don't read them. One strong credibility line is enough.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="width:20px;height:20px;border-radius:50%;background:#fce4e4;display:flex;align-items:center;justify-content:center;font-size:10px;color:#c62828;flex-shrink:0;margin-top:1px;">✕</div>
+        <div style="font-size:13px;color:var(--mid);">Avoid studio headshots with plain backgrounds — natural, in-salon photos with the team's personality showing always convert better.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

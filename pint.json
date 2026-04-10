@@ -1,0 +1,10 @@
+{
+    "preset": "laravel",
+    "exclude": [
+        "vendor",
+        "web/wp",
+        "web/app/themes/vanilla-hair-and-beauty/vendor",
+        "web/app/themes/vanilla-hair-and-beauty/node_modules",
+        "web/app/themes/vanilla-hair-and-beauty/public/build"
+    ]
+}
