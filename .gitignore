@@ -58,3 +58,4 @@ cypress/downloads/
 /claude/
 /.claude
 CLAUDE-*
+CLAUDE.*
