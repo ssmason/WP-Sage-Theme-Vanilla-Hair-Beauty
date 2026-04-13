@@ -86,7 +86,8 @@
         "wpackagist-plugin/advanced-custom-fields": "*",
         "wpackagist-plugin/duplicate-post": "*",
         "wpackagist-plugin/widget-google-reviews": "*",
-        "wpackagist-plugin/splide-carousel": "*"
+        "wpackagist-plugin/splide-carousel": "*",
+        "wpackagist-plugin/media-library-plus": "*"
     },
     "require-dev": {
         "laravel/pint": "^1.18",

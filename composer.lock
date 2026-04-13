@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb46bc03b71d128fa3d6ff00e1afff44",
+    "content-hash": "47eccfd9682991596b1e8ba24388e957",
     "packages": [
         {
             "name": "composer/installers",
@@ -855,16 +855,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ssmason/WP-Gutenberg-Block-Post-Carousel.git",
-                "reference": "1c02e44e7b0f6f9fde49af825817686c3768000e"
+                "reference": "c1709472cc412ab5c9ba95398c1928cc1f3d7da9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ssmason/WP-Gutenberg-Block-Post-Carousel/zipball/1c02e44e7b0f6f9fde49af825817686c3768000e",
-                "reference": "1c02e44e7b0f6f9fde49af825817686c3768000e",
+                "url": "https://api.github.com/repos/ssmason/WP-Gutenberg-Block-Post-Carousel/zipball/c1709472cc412ab5c9ba95398c1928cc1f3d7da9",
+                "reference": "c1709472cc412ab5c9ba95398c1928cc1f3d7da9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+                "phpcsstandards/phpcsextra": "^1.0",
+                "phpcsstandards/phpcsutils": "^1.0",
+                "wp-coding-standards/wpcs": "^3.0",
+                "yoast/phpunit-polyfills": "^2.0"
             },
             "default-branch": true,
             "type": "wordpress-plugin",
@@ -891,7 +898,7 @@
                 "source": "https://github.com/ssmason/WP-Gutenberg-Block-Post-Carousel/tree/main",
                 "issues": "https://github.com/ssmason/WP-Gutenberg-Block-Post-Carousel/issues"
             },
-            "time": "2026-04-13T14:56:20+00:00"
+            "time": "2026-04-13T16:39:23+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1264,6 +1271,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/duplicate-post/"
+        },
+        {
+            "name": "wpackagist-plugin/media-library-plus",
+            "version": "8.3.7",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/media-library-plus/",
+                "reference": "tags/8.3.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/media-library-plus.8.3.7.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/media-library-plus/"
         },
         {
             "name": "wpackagist-plugin/splide-carousel",
