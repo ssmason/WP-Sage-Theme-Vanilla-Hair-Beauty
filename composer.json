@@ -61,6 +61,10 @@
                     "type": "zip"
                 }
             }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ssmason/WP-Gutenberg-Block-Post-Carousel"
         }
     ],
     "require": {
@@ -76,11 +80,13 @@
         "ssmason/wp-gutenberg-block-popup-anywhere": "1.0.0",
         "ssmason/satori-acf-field-loop": "1.0.0",
         "ssmason/wp-gutenberg-block-custom-cta": "1.0.0",
+        "ssmason/wp-gutenberg-block-post-carousel": "dev-main",
         "satori-digital/satori-manifest": "dev-main",
         "wpackagist-plugin/wordpress-seo": "*",
         "wpackagist-plugin/advanced-custom-fields": "*",
         "wpackagist-plugin/duplicate-post": "*",
-        "wpackagist-plugin/widget-google-reviews": "*"
+        "wpackagist-plugin/widget-google-reviews": "*",
+        "wpackagist-plugin/splide-carousel": "*"
     },
     "require-dev": {
         "laravel/pint": "^1.18",

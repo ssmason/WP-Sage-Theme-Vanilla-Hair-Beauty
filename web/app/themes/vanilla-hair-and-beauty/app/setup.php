@@ -79,9 +79,15 @@ add_action('after_setup_theme', function () {
      */
     remove_theme_support('block-templates');
 
-     add_filter('the_title', function (string $title, int $id): string {
-      return '';
-  }, 10, 2);
+    /**
+     * Filter out the title on pages
+     *
+     */
+    // if (! is_admin()) {
+    //     add_filter('the_title', function (string $title, int $id): string {
+    //         return '';
+    //     }, 10, 2);
+    // }
 
     /**
      * Register the navigation menus.
