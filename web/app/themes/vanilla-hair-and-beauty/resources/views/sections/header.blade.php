@@ -1,7 +1,7 @@
 @php
     global $wpdb;
 
-    $slug = 'Navigation';
+    $slug = 'Header';
 
     $header = $wpdb->get_row($wpdb->prepare(
         "SELECT ID FROM {$wpdb->posts}
@@ -19,7 +19,7 @@
              WHERE post_type = 'wp_block'
              AND post_status IN ('publish', 'inherit')
              AND post_title = %s",
-            'header_EN'
+            'Header'
         ));
         $headerId = $header ? (int) $header->ID : 0;
     }

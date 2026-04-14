@@ -185,3 +185,21 @@ add_action('widgets_init', function () {
         'id' => 'sidebar-footer',
     ] + $config);
 });
+
+
+add_action( 'publish_post', function( int $post_id ) {
+    $post = get_post( $post_id );
+
+
+
+    $response = wp_remote_post(
+        'https://graph.facebook.com/v19.0/1166762621570064/feed',
+        [
+            'body' => [
+                'message'      => wp_strip_all_tags( get_the_excerpt( $post ) ),
+                'link'         => get_permalink( $post_id ),
+                'access_token' => 'EAAQlKheYjBABRBwKkOQC472wptaFJuSrekflQpmXXzWZCiegkNNGHtDIMtf3vSVZCCI9nQa5LSyZCzDmHvxZCDZAvwVS5JRphAy69jrMAEkW3aTwqlH5X2HOGsv1ZB3ZC0ZBHnD9AEERK8mWIwe5b5EiWbf4fSUq8hR6RCio3BNsyVtn1Qy84oeEKkR4XNfn3VmueUh7FaNEVZAjZA15ATesErbQeSDZBIr8ZB6TEriN4ts0QNLD5MK4uZAV7PGJsf5bUjCsC2eV0gEibVDGiDZC4WFS8M4AZDZD',
+            ],
+        ]
+    );
+} );
