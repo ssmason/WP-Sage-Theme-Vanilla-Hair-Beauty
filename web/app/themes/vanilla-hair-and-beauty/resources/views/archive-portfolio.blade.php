@@ -2,6 +2,18 @@
 
 @section('content')
 
+
+  {{-- Output the Portfolio page content --}}
+  @php
+    $portfolio_page = get_page_by_path('portfolio');
+    if ($portfolio_page) {
+      echo apply_filters('the_content', $portfolio_page->post_content);
+    }
+  @endphp
+
+
+
+
 <div class="mx-auto max-w-[1100px] px-4 py-8">
 
     <div class="wp-block-columns">
@@ -14,7 +26,7 @@
                 'paged'          => $paged,
             ]);
         @endphp
-        <masonry-grid-lanes min-column-width="160" gap="8" ">
+        <masonry-grid-lanes min-column-width="200" gap="8" ">
           @while($portfolio->have_posts())
               @php $portfolio->the_post() @endphp
               @if(has_post_thumbnail())

@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
+  {{-- Output the Portfolio page content --}}
+  @php
+    $services_page = get_page_by_path('services');
+    if ($services_page) {
+      echo apply_filters('the_content', $services_page->post_content);
+    }
+  @endphp
+
+
+
+
 @php
 
     global $wpdb;

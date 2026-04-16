@@ -3,3 +3,6 @@
 @source "../../app/**/*.php";
 @source "../**/*.blade.php";
 @source "../**/*.js";
+
+
+@source inline("z-50 mt-24 gap-0 border-b-1 border-[#716e4d]");

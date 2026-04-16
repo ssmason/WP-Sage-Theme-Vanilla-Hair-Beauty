@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
+  {{-- Output the Portfolio page content --}}
+  @php
+    $team_page = get_page_by_path('team');
+    if ($team_page) {
+      echo apply_filters('the_content', $team_page->post_content);
+    }
+  @endphp
+
+
+
+
+
+
 @php
 
     global $wpdb;
