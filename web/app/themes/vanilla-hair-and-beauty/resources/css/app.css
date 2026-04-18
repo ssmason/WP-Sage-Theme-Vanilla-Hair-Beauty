@@ -1,8 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap");
 @import "tailwindcss" important theme(static);
+
+@theme {
+  --color-white:    #FDFAF5;
+  --color-cream:    #F5F0E8;
+  --color-warm:     #EDE6D6;
+  --color-sand:     #D4C5A9;
+  --color-stone:    #9A8A75;
+  --color-mid:      #5C4E3A;
+  --color-dark:     #1C1712;
+  --color-terra:    #B5704A;
+  --color-terra-dk: #8C4E2F;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'DM Sans', sans-serif;
+}
 @source "../../app/**/*.php";
 @source "../**/*.blade.php";
 @source "../**/*.js";
 
 
 @source inline("z-50 mt-24 gap-0 border-b-1 border-[#ff6843] test");
+
+/* Single Team safe zone */
+@source inline("grid-cols-[1fr_300px] min-h-[280px] h-[40vh] max-w-[1140px] col-span-full w-[200px] h-[260px] w-[520px] h-[520px] w-[300px] h-[300px] bottom-[-180px] right-[-80px] top-[-60px] left-[35%] border-[60px] rounded-t-[120px] text-[clamp(2.6rem,6vw,4.4rem)] text-[11px] text-[10px] text-[13px] text-[12px] tracking-[0.2em] tracking-[0.18em] tracking-[0.12em] tracking-[0.04em] border-l-2 border-stone/15 border-stone/30 bg-stone/5 bg-stone/30 text-stone/60 sand/10 bg-warm hover:bg-warm/50 bg-transparent border-transparent hover:bg-dark");

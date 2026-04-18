@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team – Madeleine Brooke</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --sage:    #716e4d;
+  --sage-dk: #4d4b34;
+  --sage-lt: #a8a57e;
+  --sage-pl: #e8e6d8;
+  --sage-gh: #f4f3ec;
+  --warm:    #c9b99a;
+  --warm-dk: #8c7355;
+  --warm-lt: #ede5d8;
+  --cream:   #faf8f3;
+  --ink:     #2b2a24;
+  --muted:   #6b6859;
+  --faint:   #9e9b8a;
+  --border:  rgba(113,110,77,0.15);
+  --font: 'Georgia', serif;
+  --sans: system-ui, -apple-system, sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);min-height:100vh;}
+
+/* ── LAYOUT ── */
+.wrap{display:grid;grid-template-columns:1fr 300px;min-height:100vh;max-width:1140px;margin:0 auto;}
+
+/* ── BANNER ── */
+.banner{
+  height:40vh;min-height:280px;
+  background:var(--sage-dk);
+  position:relative;overflow:hidden;
+  display:flex;align-items:flex-end;
+  padding:0 3rem 2.5rem;
+  grid-column:1/3;
+}
+.banner-texture{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(45deg,rgba(255,255,255,0.02) 0px,rgba(255,255,255,0.02) 1px,transparent 1px,transparent 12px),
+    repeating-linear-gradient(-45deg,rgba(255,255,255,0.02) 0px,rgba(255,255,255,0.02) 1px,transparent 1px,transparent 12px);
+}
+.banner-arc{
+  position:absolute;
+  bottom:-180px;right:-80px;
+  width:520px;height:520px;
+  border-radius:50%;
+  border:60px solid rgba(201,185,154,0.12);
+}
+.banner-arc2{
+  position:absolute;
+  top:-60px;left:35%;
+  width:300px;height:300px;
+  border-radius:50%;
+  background:rgba(168,165,126,0.07);
+}
+.banner-inner{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;width:100%;}
+.banner-text{}
+.banner-eyebrow{
+  font-family:var(--sans);
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--sage-lt);margin-bottom:0.6rem;
+}
+.banner-name{
+  font-family:var(--font);
+  font-size:clamp(2.6rem,6vw,4.4rem);
+  font-weight:400;font-style:italic;
+  color:var(--sage-pl);
+  line-height:1.05;
+}
+.banner-years{
+  margin-top:1rem;
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:12px;color:var(--warm);letter-spacing:0.05em;
+}
+.banner-years span{display:inline-block;width:24px;height:0.5px;background:var(--warm);}
+.banner-photo-wrap{
+  position:relative;
+  flex-shrink:0;
+  align-self:flex-end;
+  margin-bottom:-1px;
+}
+.banner-photo{
+  width:200px;height:260px;
+  object-fit:cover;object-position:top;
+  display:block;
+  background:var(--sage-lt);
+  border-radius:120px 120px 0 0;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.photo-initials-lg{font-family:var(--font);font-size:3.5rem;font-style:italic;color:var(--sage-dk);}
+
+/* ── MAIN CONTENT ── */
+.main{min-width:0;padding:3rem 3rem 4rem;display:flex;flex-direction:column;gap:3rem;}
+
+.pull-quote{
+  font-family:var(--font);
+  font-size:1.45rem;font-style:italic;font-weight:400;
+  color:var(--sage);line-height:1.5;
+  position:relative;
+  padding-left:1.75rem;
+}
+.pull-quote::before{
+  content:'';
+  position:absolute;left:0;top:0.2em;bottom:0.2em;
+  width:2px;background:var(--warm);
+}
+
+.section{}
+.eyebrow{
+  font-family:var(--sans);
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--warm-dk);margin-bottom:1rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.eyebrow::after{content:'';flex:1;height:0.5px;background:var(--border);}
+
+.body-text{font-size:15px;color:var(--muted);line-height:1.75;}
+
+/* Speciality pills — scattered feel */
+.craft-list{
+  display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:0.5rem;
+}
+.craft-pill{
+  font-size:13px;color:var(--sage-dk);
+  border:1px solid rgba(113,110,77,0.3);
+  border-radius:2px;
+  padding:5px 14px;
+  background:transparent;
+  font-family:var(--sans);
+  letter-spacing:0.04em;
+}
+.craft-pill.filled{background:var(--sage-pl);border-color:transparent;}
+
+/* Stat row */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:0.5px solid var(--border);}
+.stat-cell{padding:1.25rem;border-right:0.5px solid var(--border);text-align:center;}
+.stat-cell:last-child{border-right:none;}
+.stat-num{font-family:var(--font);font-size:2rem;font-style:italic;color:var(--sage);line-height:1;}
+.stat-desc{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:0.12em;margin-top:0.35rem;}
+
+/* Timeline — horizontal */
+.h-timeline{position:relative;padding-top:1.5rem;}
+.h-timeline-line{
+  position:absolute;top:0;left:0;right:0;
+  height:0.5px;background:var(--border);
+}
+.h-timeline-items{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;}
+.ht-item{padding:1.5rem 0 0;position:relative;}
+.ht-dot{
+  position:absolute;top:-1.5rem;left:0;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--warm);
+  transform:translateY(50%);
+}
+.ht-year{font-size:11px;color:var(--warm-dk);font-weight:500;letter-spacing:0.1em;margin-bottom:0.4rem;}
+.ht-role{font-size:13px;color:var(--ink);font-weight:500;line-height:1.3;margin-bottom:0.2rem;}
+.ht-place{font-size:12px;color:var(--faint);}
+
+/* Beyond – two col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.beyond-item{}
+.beyond-icon{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--warm-lt);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:0.75rem;
+  font-size:14px;
+}
+.beyond-label{font-size:12px;text-transform:uppercase;letter-spacing:0.12em;color:var(--faint);margin-bottom:0.3rem;}
+.beyond-val{font-size:14px;color:var(--ink);}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  border-left:0.5px solid var(--border);
+  background:var(--sage-gh);
+  display:flex;flex-direction:column;
+}
+
+.sb-top{
+  padding:2rem 1.75rem;
+  border-bottom:0.5px solid var(--border);
+}
+.sb-label{font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--faint);margin-bottom:1rem;}
+.sb-info-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:0.5px solid var(--border);}
+.sb-info-row:last-child{border-bottom:none;}
+.sb-key{font-size:12px;color:var(--muted);}
+.sb-val{font-size:12px;color:var(--ink);font-weight:500;text-align:right;}
+
+.sb-book{
+  margin-top:1.25rem;
+  display:block;width:100%;
+  padding:0.75rem;
+  background:var(--sage);
+  color:var(--cream);
+  font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+  text-align:center;text-decoration:none;
+  border:none;cursor:pointer;
+}
+.sb-book:hover{background:var(--sage-dk);}
+
+/* Team nav */
+.sb-nav-header{
+  padding:1.5rem 1.75rem 0.75rem;
+  font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--faint);
+}
+.team-item{
+  display:flex;align-items:center;gap:0.85rem;
+  padding:0.85rem 1.75rem;
+  border-bottom:0.5px solid var(--border);
+  text-decoration:none;position:relative;
+  cursor:pointer;
+}
+.team-item:hover{background:var(--warm-lt);}
+.team-item.active{background:var(--warm-lt);}
+.team-item.active::after{
+  content:'';position:absolute;right:0;top:0;bottom:0;
+  width:2px;background:var(--sage);
+}
+.t-avatar{
+  width:40px;height:40px;border-radius:50%;
+  flex-shrink:0;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font);font-style:italic;font-size:1.1rem;
+}
+.t-avatar.s1{background:#e8e6d8;color:#4d4b34;}
+.t-avatar.s2{background:#ede5d8;color:#8c7355;}
+.t-avatar.s3{background:#e6ebe1;color:#3d5c35;}
+.t-avatar.s4{background:#ebe1e1;color:#5c3535;}
+.t-avatar.s5{background:#e1e5eb;color:#35455c;}
+.t-avatar.s6{background:#e8e1eb;color:#553559;}
+.t-name{font-size:13px;color:var(--ink);font-weight:500;}
+.t-role{font-size:11px;color:var(--faint);}
+.t-arrow{margin-left:auto;font-size:11px;color:var(--faint);}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- BANNER spans full width -->
+  <div class="banner">
+    <div class="banner-texture"></div>
+    <div class="banner-arc"></div>
+    <div class="banner-arc2"></div>
+    <div class="banner-inner">
+      <div class="banner-text">
+        <p class="banner-eyebrow">Lead Stylist &nbsp;·&nbsp; Colour Specialist</p>
+        <h1 class="banner-name">Madeleine Brooke</h1>
+        <p class="banner-years"><span></span> With us since 2018 <span></span></p>
+      </div>
+      <div class="banner-photo-wrap">
+        <div class="banner-photo">
+          <span class="photo-initials-lg">MB</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <p class="pull-quote">"Hair is the first thing people change when they want to change something about their life. I'm here to make that moment feel completely effortless."</p>
+
+    <!-- Stats -->
+    <div class="stat-row">
+      <div class="stat-cell">
+        <div class="stat-num">12</div>
+        <div class="stat-desc">Years in the industry</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">6</div>
+        <div class="stat-desc">Years at the salon</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">∞</div>
+        <div class="stat-desc">Coffees consumed</div>
+      </div>
+    </div>
+
+    <!-- Right now -->
+    <div class="section">
+      <div class="eyebrow">Right now</div>
+      <p class="body-text" style="margin-bottom:1.25rem;">Maddie is deep into balayage and lived-in colour — always testing new toning formulas before they reach the chair. She's also running the salon's monthly colour workshop for junior staff and quietly obsessing over tonal brunettes.</p>
+      <div class="craft-list">
+        <span class="craft-pill filled">French balayage</span>
+        <span class="craft-pill filled">Colour correction</span>
+        <span class="craft-pill">Tonal brunettes</span>
+        <span class="craft-pill">Highlights</span>
+        <span class="craft-pill">Keratin treatments</span>
+        <span class="craft-pill">Bridal styling</span>
+        <span class="craft-pill">Extensions</span>
+      </div>
+    </div>
+
+    <!-- Journey -->
+    <div class="section">
+      <div class="eyebrow">The journey</div>
+      <div class="h-timeline">
+        <div class="h-timeline-line"></div>
+        <div class="h-timeline-items">
+          <div class="ht-item">
+            <div class="ht-dot"></div>
+            <div class="ht-year">2012</div>
+            <div class="ht-role">Apprentice Stylist</div>
+            <div class="ht-place">Toni &amp; Guy, London</div>
+          </div>
+          <div class="ht-item">
+            <div class="ht-dot"></div>
+            <div class="ht-year">2015</div>
+            <div class="ht-role">Senior Colourist</div>
+            <div class="ht-place">Hare &amp; Bone, Marylebone</div>
+          </div>
+          <div class="ht-item">
+            <div class="ht-dot"></div>
+            <div class="ht-year">2017</div>
+            <div class="ht-role">Colour Education Lead</div>
+            <div class="ht-place">Wella Professionals UK</div>
+          </div>
+          <div class="ht-item">
+            <div class="ht-dot"></div>
+            <div class="ht-year">2018 →</div>
+            <div class="ht-role">Lead Stylist</div>
+            <div class="ht-place">Vanilla Hair &amp; Beauty</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beyond -->
+    <div class="section">
+      <div class="eyebrow">Beyond the chair</div>
+      <div class="two-col">
+        <div class="beyond-item">
+          <div class="beyond-label">Currently into</div>
+          <div class="beyond-val">Ceramics &amp; wheel throwing</div>
+        </div>
+        <div class="beyond-item">
+          <div class="beyond-label">Weekend ritual</div>
+          <div class="beyond-val">Coast walks with two whippets</div>
+        </div>
+        <div class="beyond-item">
+          <div class="beyond-label">Morning routine</div>
+          <div class="beyond-val">Yoga, no exceptions</div>
+        </div>
+        <div class="beyond-item">
+          <div class="beyond-label">Always photographing</div>
+          <div class="beyond-val">Colour work for Instagram</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social -->
+    <div class="section">
+      <div class="eyebrow">Find her</div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="#" style="font-size:13px;color:var(--sage);text-decoration:none;border-bottom:1px solid rgba(113,110,77,0.3);padding-bottom:1px;">@madeleine_hair</a>
+        <a href="#" style="font-size:13px;color:var(--sage);text-decoration:none;border-bottom:1px solid rgba(113,110,77,0.3);padding-bottom:1px;">LinkedIn</a>
+        <a href="#" style="font-size:13px;color:var(--sage);text-decoration:none;border-bottom:1px solid rgba(113,110,77,0.3);padding-bottom:1px;">Pinterest inspiration board</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sb-top">
+      <div class="sb-label">Bookings</div>
+      <div class="sb-info-row"><span class="sb-key">Days in</span><span class="sb-val">Tue – Sat</span></div>
+      <div class="sb-info-row"><span class="sb-key">First appointment</span><span class="sb-val">9:00 am</span></div>
+      <div class="sb-info-row"><span class="sb-key">Bookings</span><span class="sb-val">Online only</span></div>
+      <div class="sb-info-row"><span class="sb-key">Consultation</span><span class="sb-val">Complimentary</span></div>
+      <a href="#" class="sb-book">Book with Maddie</a>
+    </div>
+
+    <div class="sb-nav-header">The team</div>
+
+    <a class="team-item active" href="#">
+      <div class="t-avatar s1">MB</div>
+      <div><div class="t-name">Madeleine Brooke</div><div class="t-role">Lead Stylist</div></div>
+      <span class="t-arrow">—</span>
+    </a>
+    <a class="team-item" href="#">
+      <div class="t-avatar s2">SC</div>
+      <div><div class="t-name">Sofia Chen</div><div class="t-role">Colour Technician</div></div>
+      <span class="t-arrow">→</span>
+    </a>
+    <a class="team-item" href="#">
+      <div class="t-avatar s3">RP</div>
+      <div><div class="t-name">Rachel Park</div><div class="t-role">Junior Stylist</div></div>
+      <span class="t-arrow">→</span>
+    </a>
+    <a class="team-item" href="#">
+      <div class="t-avatar s4">JL</div>
+      <div><div class="t-name">James Liu</div><div class="t-role">Senior Barber</div></div>
+      <span class="t-arrow">→</span>
+    </a>
+    <a class="team-item" href="#">
+      <div class="t-avatar s5">AW</div>
+      <div><div class="t-name">Anya Walsh</div><div class="t-role">Nail Technician</div></div>
+      <span class="t-arrow">→</span>
+    </a>
+    <a class="team-item" href="#">
+      <div class="t-avatar s6">KH</div>
+      <div><div class="t-name">Kezia Hart</div><div class="t-role">Skin Therapist</div></div>
+      <span class="t-arrow">→</span>
+    </a>
+
+  </aside>
+
+</div>
+</body>
+</html>
+ENDOFFILE
