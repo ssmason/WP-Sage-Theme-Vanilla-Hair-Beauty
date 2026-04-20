@@ -3,38 +3,79 @@
 @section('content')
 @while( have_posts() ) @php the_post(); @endphp
 
-  <div class="grid grid-cols-[1fr_300px] min-h-screen max-w-[1140px] mx-auto">
 
-    {{-- ── BANNER ── --}}
-    <div class="col-span-full bg-mid relative overflow-hidden flex items-end min-h-[280px] h-[40vh] px-12 pb-10">
 
-      <div class="absolute inset-0"
-          style="background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.02) 0px,rgba(255,255,255,0.02) 1px,transparent 1px,transparent 12px),repeating-linear-gradient(-45deg,rgba(255,255,255,0.02) 0px,rgba(255,255,255,0.02) 1px,transparent 1px,transparent 12px)"></div>
-      <div class="absolute bottom-[-180px] right-[-80px] w-[520px] h-[520px] rounded-full border-[60px] border-sand/10"></div>
-      <div class="absolute top-[-60px] left-[35%] w-[300px] h-[300px] rounded-full bg-stone/5"></div>
 
-      <div class="relative z-10 flex items-end justify-between w-full">
-        <div>
-          <p class="font-sans text-[11px] tracking-[0.2em] uppercase text-stone mb-2">
-            {{ __( get_field( 'title'), 'vanilla' ) }}
-          </p>
-          <h1 class="font-serif text-[clamp(2.6rem,6vw,4.4rem)] font-light italic text-warm leading-none">
-            {{ __( get_the_title(), 'vanilla' ) }}
-          </h1>
-          <p class="mt-4 inline-flex items-center gap-2 font-sans text-[12px] text-sand tracking-[0.05em]">
-            <span class="block w-6 h-px bg-sand"></span>
-            {{ __( 'With us since ' . get_field('joined'), 'vanilla' ) }}
-            <span class="block w-6 h-px bg-sand"></span>
-          </p>
-        </div>
-
-        <div class="self-end flex-shrink-0">
-          <div class="w-[200px] h-[260px] rounded-t-[120px] bg-stone/30 flex items-center justify-center">
-            <span class="font-serif italic text-5xl text-mid">MB</span>
+<div class="wp-block-group alignwide is-layout-constrained wp-block-group-is-layout-constrained">
+  <div class="wp-block-cover alignfull is-light">
+    <img
+      loading="lazy"
+      decoding="async"
+      width="1024"
+      height="344"
+      class="wp-block-cover__image-background  size-large"
+      alt=""
+      src="/app/uploads/2026/04/team-page-3-1024x344.webp"
+      data-object-fit="cover"
+      srcset="
+        /app/uploads/2026/04/team-page-3-1024x344.webp 1024w,
+        /app/uploads/2026/04/team-page-3-300x101.webp   300w,
+        /app/uploads/2026/04/team-page-3-768x258.webp   768w,
+        /app/uploads/2026/04/team-page-3-1536x516.webp 1536w,
+        /app/uploads/2026/04/team-page-3.webp          1904w
+      "
+      sizes="auto, (max-width: 1024px) 100vw, 1024px"
+    >
+<div class="wp-block-cover__inner-container is-layout-constrained wp-block-cover-is-layout-constrained">
+      <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
+        <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-28f84493 wp-block-columns-is-layout-flex">
+          <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+            <span class="absolute inset-0 bg-warm/50"></span>
+              <div class="relative z-10 w-full max-w-[1140px] mx-auto px-12 pb-10">
+                <p class="font-sans text-[11px] tracking-[0.2em] uppercase text-sand mb-2">
+                  {{ __( get_field( 'title'), 'vanilla' ) }}
+                </p>
+                <h1 class="font-serif text-[clamp(2.6rem,6vw,4.4rem)] font-light italic text-warm leading-none">
+                  {{ __( get_the_title(), 'vanilla' ) }} xxxxx
+                </h1>
+                <p class="mt-4 inline-flex items-center gap-2 font-sans text-[12px] text-sand tracking-[0.05em]">
+                  <span class="block w-6 h-px bg-sand"></span>
+                  {{ __( 'With us since ' . get_field('joined'), 'vanilla' ) }}
+                  <span class="block w-6 h-px bg-sand"></span>
+                </p>
+              </div>
+          </div>
+          <div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow">
+            <div class="wp-block-group is-content-justification-right is-nowrap is-layout-flex wp-container-core-group-is-layout-17124a9a wp-block-group-is-layout-flex">
+              <figure class="wp-block-image size-medium">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  width="225"
+                  height="300"
+                  src="/app/uploads/2026/04/robert-225x300.webp"
+                  alt=""
+                  class="wp-image-469"
+                  srcset="
+                    /app/uploads/2026/04/robert-225x300.webp  225w,
+                    /app/uploads/2026/04/robert-768x1024.webp 768w,
+                    /app/uploads/2026/04/robert.webp         1000w
+                  "
+                  sizes="auto, (max-width: 225px) 100vw, 225px"
+                >
+              </figure>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+
+
+  <div class="grid grid-cols-[1fr_300px] min-h-screen max-w-[1140px] mx-auto">
 
     {{-- ── MAIN ── --}}
     <main class="min-w-0 p-12 flex flex-col gap-12">

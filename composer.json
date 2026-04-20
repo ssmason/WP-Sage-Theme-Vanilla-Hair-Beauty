@@ -65,6 +65,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/ssmason/WP-Gutenberg-Block-Post-Carousel"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ssmason/WP-Plugin-Auditor"
         }
     ],
     "require": {
@@ -81,6 +85,7 @@
         "ssmason/satori-acf-field-loop": "1.0.0",
         "ssmason/wp-gutenberg-block-custom-cta": "1.0.0",
         "ssmason/wp-gutenberg-block-post-carousel": "dev-main",
+        "ssmason/wp-plugin-auditor": "dev-main",
         "satori-digital/satori-manifest": "dev-main",
         "wpackagist-plugin/wordpress-seo": "*",
         "wpackagist-plugin/advanced-custom-fields": "*",

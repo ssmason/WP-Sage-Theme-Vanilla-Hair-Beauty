@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "47eccfd9682991596b1e8ba24388e957",
+    "content-hash": "fb387c6fc9de201d970e1e1bcd460154",
     "packages": [
         {
             "name": "composer/installers",
@@ -901,8 +901,57 @@
             "time": "2026-04-13T16:56:47+00:00"
         },
         {
+            "name": "ssmason/wp-plugin-auditor",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ssmason/WP-Plugin-Auditor.git",
+                "reference": "441b14e90dfda55d07cccba57f9cced79fc33cde"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ssmason/WP-Plugin-Auditor/zipball/441b14e90dfda55d07cccba57f9cced79fc33cde",
+                "reference": "441b14e90dfda55d07cccba57f9cced79fc33cde",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "brain/monkey": "^2",
+                "mockery/mockery": "^1",
+                "phpcompatibility/phpcompatibility-wp": "*",
+                "phpstan/phpstan": "^1",
+                "phpunit/phpunit": "^9",
+                "squizlabs/php_codesniffer": "^3",
+                "szepeviktor/phpstan-wordpress": "^1",
+                "wp-coding-standards/wpcs": "^3"
+            },
+            "default-branch": true,
+            "type": "wordpress-plugin",
+            "autoload": {
+                "classmap": [
+                    "includes/"
+                ]
+            },
+            "autoload-dev": {
+                "classmap": [
+                    "tests/"
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Audits WordPress plugins for security issues and coding standards violations.",
+            "support": {
+                "source": "https://github.com/ssmason/WP-Plugin-Auditor/tree/main",
+                "issues": "https://github.com/ssmason/WP-Plugin-Auditor/issues"
+            },
+            "time": "2026-04-20T09:17:12+00:00"
+        },
+        {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.34.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -961,7 +1010,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.34.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -985,7 +1034,7 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.34.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -1046,7 +1095,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.34.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -1070,7 +1119,7 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.34.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
@@ -1130,7 +1179,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.34.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -1328,15 +1377,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "27.3",
+            "version": "27.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/27.3"
+                "reference": "tags/27.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.27.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.27.4.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3634,7 +3683,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "satori-digital/satori-manifest": 20,
-        "ssmason/wp-gutenberg-block-post-carousel": 20
+        "ssmason/wp-gutenberg-block-post-carousel": 20,
+        "ssmason/wp-plugin-auditor": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
